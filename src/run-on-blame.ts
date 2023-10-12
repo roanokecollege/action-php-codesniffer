@@ -11,7 +11,7 @@ export async function runOnBlame(files: string[]): Promise<void> {
     const options: Record<string, string> = {};
     const standard = core.getInput('standard');
     if (standard) options.standard = standard;
-
+    console.log(standard);
     const lintResults = await lint(
       files,
       core.getInput('phpcs_path', { required: true }),

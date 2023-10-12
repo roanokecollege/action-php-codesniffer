@@ -3435,7 +3435,7 @@ const EXECUTABLE_VERSIONS = new Map();
 const DEFAULT_EXECUTABLE_PATH = path.resolve(__dirname, '../node_modules/php_codesniffer_master/bin/phpcs');
 const DEFAULT_OPTIONS = {
     encoding: 'UTF-8',
-    standard: 'PEAR',
+    standard: 'phpcs.xml',
 };
 /**
  * Launches phpCs and returns current version
