@@ -14,7 +14,8 @@ export async function runOnBlame(files: string[]): Promise<void> {
 
     const lintResults = await lint(
       files,
-      core.getInput('phpcs_path', { required: true })
+      core.getInput('phpcs_path', { required: true }),
+      options
     );
 
     const dontFailOnWarning =
@@ -38,7 +39,7 @@ export async function runOnBlame(files: string[]): Promise<void> {
     for (const [file, results] of Object.entries(lintResults.files)) {
       const blameMap = await blame(file);
       let headerPrinted = false;
-      for (const message of results.messages) {
+      for (const message of results.message) {
         if (blameMap.get(message.line)?.authorMail === authorEmail) {
           // that's our line
           // we simulate checkstyle output to be picked up by problem matched
@@ -63,7 +64,5 @@ export async function runOnBlame(files: string[]): Promise<void> {
       }
     }
   } catch (err) {
-    core.debug(err);
-    core.setFailed(err);
   }
 }
